@@ -37,7 +37,7 @@ const Header = ({ setHomeState }) => {
           </a>
         </li>
         <li>
-          <a href="#" className={`nav-link text-white ${style.right}`}>
+          <a href="#" onClick={() => setHomeState("profile")} className={`nav-link text-white ${style.right}`}>
             <span><CgProfile /></span>
             <span>Profile</span>
           </a>

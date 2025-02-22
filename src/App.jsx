@@ -5,6 +5,7 @@ import Thoughts from "./components/body";
 import { useState } from "react";
 import Write from "./components/write"
 import MyThoughts from "./components/myThoughts"
+import Profile from "./components/profile";
 
 function App() {
   const [homestate, sethomeState] = useState("Home");
@@ -15,6 +16,7 @@ function App() {
       {homestate === "Home" && <Thoughts />}
       {homestate === "write" && <Write />}
       {homestate === "myThought" && <MyThoughts />}
+      {homestate === "profile" && <Profile />}
     </>
   )
 }
