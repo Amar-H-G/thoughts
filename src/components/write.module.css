@@ -1,0 +1,49 @@
+
+.container{
+  width: 100%;
+  justify-items: center;
+}
+.contain{
+  width: 40%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20px;
+}
+.title{
+  width: 100%;
+  font-size: 19px;
+  height: 5vh;
+  border-radius: 5px;
+}
+.content{
+  width: 100%;
+  font-size: 19px;
+  height: 20vh;
+  border-radius: 5px;
+}
+.post{
+  font-size: 30px;
+  border-radius: 5px;
+}
+
+@media (max-width: 768px) {
+  .contain {
+    width: 90%;
+    margin-top: 5px;
+  }
+
+  .title {
+    font-size: 16px;
+    height: 8vh;
+  }
+  .content {
+    font-size: 16px;
+    height: 15vh;
+  }
+
+  .post {
+    font-size: 20px;
+  }
+}

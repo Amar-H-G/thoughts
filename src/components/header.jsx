@@ -5,22 +5,24 @@ import { CgProfile } from "react-icons/cg";
 import { SiLibreofficewriter } from "react-icons/si";
 import { SiBookmyshow } from "react-icons/si";
 
-const Header = () => {
+const Header = ({ setHomeState }) => {
+
   return <>
     <div className={`d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ${style.header}`}>
       <a href="/" className="d-flex align-items-center my-0 my-lg-2 me-lg-auto text-white text-decoration-none mx-4 mt-3">
         <h1>Thoughts</h1>
       </a>
 
+
       <ul className="nav flex-nowrap col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small fw-semibold">
         <li className="">
-          <a href="#" className={`nav-link text-white ${style.right}`}>
+          <a href="#" onClick={() => setHomeState("Home")} className={`nav-link text-white ${style.right}`}>
             <span><RiHomeSmile2Line /></span>
             <span>Home</span>
           </a>
         </li>
         <li>
-          <a href="#" className={`nav-link text-white ${style.right}`}>
+          <a href="#" onClick={() => setHomeState("write")} className={`nav-link text-white ${style.right}`}>
 
             <span> <SiLibreofficewriter /></span>
             <span>Write</span>
@@ -28,7 +30,7 @@ const Header = () => {
           </a>
         </li>
         <li>
-          <a href="#" className={`nav-link text-white ${style.right}`}>
+          <a href="#" onClick={() => setHomeState("myThought")} className={`nav-link text-white ${style.right}`}>
             <span><SiBookmyshow /></span>
             <span>My Thoughts</span>
 
@@ -42,6 +44,7 @@ const Header = () => {
         </li>
       </ul>
     </div>
+
   </>
 }
 export default Header;

@@ -1,0 +1,25 @@
+.cardHead{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2px;
+}
+.Likes{
+  display: flex;
+  flex-direction: row;
+}
+.item{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-right: 20px;
+}
+.Likes span{
+  font-size: 27px;
+}
+.Likes span p{
+  font-size: 20px;
+}
