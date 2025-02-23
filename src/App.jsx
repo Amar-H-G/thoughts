@@ -6,6 +6,7 @@ import { useState } from "react";
 import Write from "./components/write"
 import MyThoughts from "./components/myThoughts"
 import Profile from "./components/profile";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   const [homestate, sethomeState] = useState("Home");
@@ -13,10 +14,12 @@ function App() {
   return (
     <>
       <Header homeState={homestate} setHomeState={sethomeState}></Header>
-      {homestate === "Home" && <Thoughts />}
-      {homestate === "write" && <Write />}
-      {homestate === "myThought" && <MyThoughts />}
-      {homestate === "profile" && <Profile />}
+      <Routes>
+        {homestate === "Home" && <Route path="/" element={<Thoughts />} />}
+        {homestate === "write" && <Route path="/write" element={<Write />} />}
+        {homestate === "myThought" && <Route path="/mythoughts" element={<MyThoughts />} />}
+        {homestate === "profile" && <Route path="/profile" element={<Profile />} />}
+      </Routes>
     </>
   )
 }

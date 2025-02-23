@@ -4,43 +4,44 @@ import { RiHomeSmile2Line } from "react-icons/ri";
 import { CgProfile } from "react-icons/cg";
 import { SiLibreofficewriter } from "react-icons/si";
 import { SiBookmyshow } from "react-icons/si";
+import { Link } from "react-router-dom";
 
 const Header = ({ setHomeState }) => {
 
   return <>
     <div className={`d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start ${style.header}`}>
-      <a href="/" className="d-flex align-items-center my-0 my-lg-2 me-lg-auto text-white text-decoration-none mx-4 mt-3">
+      <Link to="/" className="d-flex align-items-center my-0 my-lg-2 me-lg-auto text-white text-decoration-none mx-4 mt-3">
         <h1>Thoughts</h1>
-      </a>
+      </Link>
 
 
       <ul className="nav flex-nowrap col-12 col-lg-auto my-2 justify-content-center my-md-0 text-small fw-semibold">
         <li className="">
-          <a href="#" onClick={() => setHomeState("Home")} className={`nav-link text-white ${style.right}`}>
+          <Link to="/" onClick={() => setHomeState("Home")} className={`nav-link text-white ${style.right}`}>
             <span><RiHomeSmile2Line /></span>
             <span>Home</span>
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" onClick={() => setHomeState("write")} className={`nav-link text-white ${style.right}`}>
+          <Link to="/write" onClick={() => setHomeState("write")} className={`nav-link text-white ${style.right}`}>
 
             <span> <SiLibreofficewriter /></span>
             <span>Write</span>
 
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" onClick={() => setHomeState("myThought")} className={`nav-link text-white ${style.right}`}>
+          <Link to="/mythoughts" onClick={() => setHomeState("myThought")} className={`nav-link text-white ${style.right}`}>
             <span><SiBookmyshow /></span>
             <span>My Thoughts</span>
 
-          </a>
+          </Link>
         </li>
         <li>
-          <a href="#" onClick={() => setHomeState("profile")} className={`nav-link text-white ${style.right}`}>
+          <Link to="/profile" onClick={() => setHomeState("profile")} className={`nav-link text-white ${style.right}`}>
             <span><CgProfile /></span>
             <span>Profile</span>
-          </a>
+          </Link>
         </li>
       </ul>
     </div>
