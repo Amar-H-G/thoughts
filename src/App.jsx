@@ -7,6 +7,7 @@ import Write from "./components/write"
 import MyThoughts from "./components/myThoughts"
 import Profile from "./components/profile";
 import { Routes, Route } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 
 function App() {
   const [homestate, sethomeState] = useState("Home");
@@ -15,10 +16,11 @@ function App() {
     <>
       <Header homeState={homestate} setHomeState={sethomeState}></Header>
       <Routes>
-        {homestate === "Home" && <Route path="/" element={<Thoughts />} />}
-        {homestate === "write" && <Route path="/write" element={<Write />} />}
-        {homestate === "myThought" && <Route path="/mythoughts" element={<MyThoughts />} />}
-        {homestate === "profile" && <Route path="/profile" element={<Profile />} />}
+        <Route path="/" element={<Thoughts />} />
+        <Route path="/write" element={homestate === "write" ? <Write /> : <Navigate to="/" />} />
+        <Route path="/mythoughts" element={homestate === "myThought" ? <MyThoughts /> : <Navigate to="/" />} />
+        <Route path="/profile" element={homestate === "profile" ? <Profile /> : <Navigate to="/" />} />
+        <Route path="*" element={<div>404 - Not Found</div>} />
       </Routes>
     </>
   )
