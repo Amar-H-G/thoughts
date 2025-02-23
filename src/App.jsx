@@ -17,9 +17,9 @@ function App() {
       <Header homeState={homestate} setHomeState={sethomeState}></Header>
       <Routes>
         <Route path="/" element={<Thoughts />} />
-        <Route path="/write" element={homestate === "write" ? <Write /> : <Navigate to="/" />} />
-        <Route path="/mythoughts" element={homestate === "myThought" ? <MyThoughts /> : <Navigate to="/" />} />
-        <Route path="/profile" element={homestate === "profile" ? <Profile /> : <Navigate to="/" />} />
+        <Route path="/write" element={homestate === "write" && <Write />} />
+        <Route path="/mythoughts" element={homestate === "myThought" && <MyThoughts />} />
+        <Route path="/profile" element={homestate === "profile" && <Profile />} />
         <Route path="*" element={<div>404 - Not Found</div>} />
       </Routes>
     </>
