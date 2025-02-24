@@ -1,6 +1,8 @@
 import { useState } from "react";
 import style from "./write.module.css"
 const Write = ({ newItemAdd }) => {
+
+  const [key, setKey] = useState(5);
   const [title, setTitle] = useState();
   const [content, setContent] = useState();
   const handleNewTitle = (event) => {
@@ -10,7 +12,8 @@ const Write = ({ newItemAdd }) => {
     setContent(event.target.value);
   }
   const handlePost = () => {
-    newItemAdd(title, content);
+    newItemAdd(key, title, content);
+    setKey((key) => key + 1)
     setTitle("");
     setContent("");
   }
