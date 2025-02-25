@@ -1,30 +1,29 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import style from "./write.module.css"
 const Write = ({ newItemAdd }) => {
+  const titleElement = useRef();
+  const contentElement = useRef();
+  const key = useRef(4);
 
-  const [key, setKey] = useState(5);
-  const [title, setTitle] = useState();
-  const [content, setContent] = useState();
-  const handleNewTitle = (event) => {
-    setTitle(event.target.value);
-  }
-  const handleNewContent = (event) => {
-    setContent(event.target.value);
-  }
-  const handlePost = () => {
+  const handlePost = (event) => {
+    event.preventDefault();
+    const title = titleElement.current.value;
+    const content = contentElement.current.value;
+    const setKey = key.current.value + 1;
+    titleElement.current.value = "";
+    contentElement.current.value = "";
     newItemAdd(key, title, content);
-    setKey((key) => key + 1)
-    setTitle("");
-    setContent("");
   }
   return <>
-    <div className={`container-fluid ${style.container}`}>
-      <div className={`${style.contain}`}>
-        <input type="text" placeholder="Enter the Title of your Thought" className={` mt-5 ${style.title}`} onChange={handleNewTitle} />
-        <textarea type="text" name="input" placeholder="Enter Your Thoughts" className={` mt-3 ${style.content}`} onChange={handleNewContent}></textarea>
-        <button type="submit" className={` mt-5 ${style.post}`} onClick={handlePost}>Post</button>
+    <form onSubmit={handlePost}>
+      <div className={`container-fluid ${style.container}`}>
+        <div className={`${style.contain}`}>
+          <input type="text" placeholder="Enter the Title of your Thought" className={` mt-5 ${style.title}`} ref={titleElement} />
+          <textarea type="text" name="input" placeholder="Enter Your Thoughts" className={` mt-3 ${style.content}`} ref={contentElement}></textarea>
+          <button className={` mt-5 ${style.post}`} type="submit">Post</button>
+        </div>
       </div>
-    </div>
+    </form>
   </>
 }
 export default Write;
