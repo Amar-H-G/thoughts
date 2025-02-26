@@ -11,17 +11,6 @@ import { ItemsContext } from "./store/item";
 import ItemContextProvider from "./store/item";
 
 function App() {
-  // const [data, setData] = useState(initialData);
-  // const handleDataAdd = (key, name, content) => {
-  //   console.log("Came into function", key, name, content)
-  //   const newData = [...initialData, {
-  //     id: key,
-  //     title: name,
-  //     content: content,
-  //   }]
-  //   setData(newData);
-  // }
-
   const [homestate, sethomeState] = useState("Home");
 
   return (

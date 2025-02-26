@@ -23,3 +23,27 @@
 .Likes span p{
   font-size: 20px;
 }
+.tags{
+  margin-top: 4px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+.tags button{
+  margin-right: 3px;
+  font-size: 18px;
+}
+/* 
+.view{
+  font-size: 20px;
+  display: flex;
+  flex-direction: column;
+} */
+ .view{
+  display: flex;
+  flex-direction: row;
+  font-size: 18px;
+ }
+.tags .view span{
+  font-size: 12px;
+}

@@ -1,0 +1,23 @@
+.welcome {
+  font-size: 50px;
+  color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  height: 80vh; 
+  margin: 0; 
+  width: 100vw;
+}
+
+@media (max-width: 768px) {
+  .welcome {
+    display: flex;
+    font-size: 40px;
+    color: red;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    height: 70vh; /* Optional, to center vertically on the screen */
+  }
+}
