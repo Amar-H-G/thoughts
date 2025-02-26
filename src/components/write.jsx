@@ -4,7 +4,7 @@ import { ItemsContext } from "../store/item";
 
 
 const Write = () => {
-  const { handleDataAdd } = useContext(ItemsContext);
+  const { newItemAdd } = useContext(ItemsContext);
   const titleElement = useRef();
   const contentElement = useRef();
   const [key, setKey] = useState(4);
@@ -17,7 +17,7 @@ const Write = () => {
     titleElement.current.value = "";
     contentElement.current.value = "";
     { console.log("After Post") }
-    handleDataAdd(setKey, title, content);
+    newItemAdd(setKey, title, content);
   }
   return <>
     <form onSubmit={handlePost}>
