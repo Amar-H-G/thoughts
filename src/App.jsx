@@ -7,6 +7,7 @@ import Write from "./components/write"
 import MyThoughts from "./components/myThoughts"
 import Profile from "./components/profile";
 import { Routes, Route } from "react-router-dom";
+import { ItemsContext } from "./store/item";
 
 function App() {
 
@@ -30,28 +31,31 @@ function App() {
     },
   ]
 
-  const dataREf = useRef(initialData);
+  const [data,setData] = useState(initialData);
   const handleDataAdd = (key, name, content) => {
+    console.log("Came into function",key,name,content)
     const newData = [...initialData, {
       id: key,
       title: name,
       content: content,
     }]
-    dataREf.current = newData;
+    setData(newData);
   }
+
+  // <Route path="/write" element={<Write newItemAdd={handleDataAdd} />} />
 
   const [homestate, sethomeState] = useState("Home");
 
   return (
-    <>
+    <><ItemsContext.Provider value={{ data, handleDataAdd }}>
       <Header homeState={homestate} setHomeState={sethomeState}></Header>
       <Routes>
-        <Route path="/" element={<Thoughts data={dataREf.current} />} />
-        <Route path="/write" element={<Write newItemAdd={handleDataAdd} />} />
+        <Route path="/" element={<Thoughts />} />
+        <Route path="/write" element={<Write />} />
         <Route path="/mythoughts" element={<MyThoughts />} />
         <Route path="/profile" element={<Profile />} />
         <Route path="*" element={<div>404 - Not Found</div>} />
-      </Routes>
+      </Routes></ItemsContext.Provider>
     </>
   )
 }

@@ -1,10 +1,13 @@
-import { useState } from "react";
+import { useContext } from "react";
+import { ItemsContext } from "../store/item";
 import Post from "./post";
 
-const Card = ({ initialData }) => {
 
+const Card = () => {
+  const { data } = useContext(ItemsContext);
+  // console.log(dataFromContext);
   return <>
-    {initialData.map((post) => (
+    {data.map((post) => (
       <Post key={post.id} post={post} />
     ))}
   </>

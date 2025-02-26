@@ -1,18 +1,23 @@
-import { useRef, useState } from "react";
+import { useContext, useRef, useState } from "react";
 import style from "./write.module.css"
-const Write = ({ newItemAdd }) => {
+import { ItemsContext } from "../store/item";
+
+
+const Write = () => {
+  const { handleDataAdd } = useContext(ItemsContext);
   const titleElement = useRef();
   const contentElement = useRef();
-  const key = useRef(4);
+  const [key, setKey] = useState(4);
 
   const handlePost = (event) => {
     event.preventDefault();
     const title = titleElement.current.value;
     const content = contentElement.current.value;
-    const setKey = key.current.value + 1;
+    const setKey = key + 1;
     titleElement.current.value = "";
     contentElement.current.value = "";
-    newItemAdd(key, title, content);
+    { console.log("After Post") }
+    handleDataAdd(setKey, title, content);
   }
   return <>
     <form onSubmit={handlePost}>
@@ -20,6 +25,7 @@ const Write = ({ newItemAdd }) => {
         <div className={`${style.contain}`}>
           <input type="text" placeholder="Enter the Title of your Thought" className={` mt-5 ${style.title}`} ref={titleElement} />
           <textarea type="text" name="input" placeholder="Enter Your Thoughts" className={` mt-3 ${style.content}`} ref={contentElement}></textarea>
+          {console.log("Before Post")}
           <button className={` mt-5 ${style.post}`} type="submit">Post</button>
         </div>
       </div>
