@@ -7,17 +7,16 @@ const Write = () => {
   const { newItemAdd } = useContext(ItemsContext);
   const titleElement = useRef();
   const contentElement = useRef();
-  const [key, setKey] = useState(4);
+  // const [key, setKey] = useState(41);
 
   const handlePost = (event) => {
     event.preventDefault();
     const title = titleElement.current.value;
     const content = contentElement.current.value;
-    const setKey = key + 1;
+    // const setKey = key + 1;
     titleElement.current.value = "";
     contentElement.current.value = "";
-    { console.log("After Post") }
-    newItemAdd(setKey, title, content);
+    newItemAdd(title, content);
   }
   return <>
     <form onSubmit={handlePost}>

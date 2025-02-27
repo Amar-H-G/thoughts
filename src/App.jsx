@@ -2,12 +2,11 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import Header from "./components/header";
 import Thoughts from "./components/body";
-import { useReducer, useRef, useState } from "react";
+import { useState } from "react";
 import Write from "./components/write";
 import MyThoughts from "./components/myThoughts";
 import Profile from "./components/profile";
 import { Routes, Route } from "react-router-dom";
-import { ItemsContext } from "./store/item";
 import ItemContextProvider from "./store/item";
 
 function App() {

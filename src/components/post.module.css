@@ -1,4 +1,4 @@
-.cardHead{
+.cardHead {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -6,30 +6,42 @@
   align-items: center;
   margin-bottom: 2px;
 }
-.Likes{
+.card {
+  background-color: bisque;
+}
+.Likes {
   display: flex;
   flex-direction: row;
 }
-.item{
+.item {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-right: 20px;
 }
-.Likes span{
+.Likes span {
   font-size: 27px;
 }
-.Likes span p{
+.Likes span p {
   font-size: 20px;
 }
-.tags{
+.tags {
   margin-top: 4px;
   display: flex;
   flex-direction: row;
-  justify-content: space-evenly;
+  justify-content: space-between;
 }
-.tags button{
+.but {
+  display: flex;
+  flex-direction: row;
+  background-color: rgb(11, 40, 16);
+  justify-content: space-evenly;
+  width: 80%;
+  border-radius: 5px;
+  padding: 4px;
+}
+.tags button {
   margin-right: 3px;
   font-size: 18px;
 }
@@ -39,11 +51,13 @@
   display: flex;
   flex-direction: column;
 } */
- .view{
+.view {
   display: flex;
+  margin-top: 10px;
   flex-direction: row;
-  font-size: 18px;
- }
-.tags .view span{
+  font-size: 19px;
+  color: black;
+}
+.tags .view span {
   font-size: 12px;
 }
