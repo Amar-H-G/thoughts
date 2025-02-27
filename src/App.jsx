@@ -13,18 +13,17 @@ function App() {
   const [homestate, sethomeState] = useState("Home");
 
   return (
-    <>
-      <ItemContextProvider>
-        <Header homeState={homestate} setHomeState={sethomeState}></Header>
-        <Routes>
+    <ItemContextProvider>
+      <Header homeState={homestate} setHomeState={sethomeState}></Header>
+      <Routes>
           <Route path="/" element={<Thoughts />} />
           <Route path="/write" element={<Write />} />
           <Route path="/mythoughts" element={<MyThoughts />} />
           <Route path="/profile" element={<Profile />} />
           <Route path="*" element={<div>404 - Not Found</div>} />
         </Routes>
-      </ItemContextProvider>
-    </>
+    </ItemContextProvider>
+
   );
 }
 

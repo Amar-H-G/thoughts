@@ -1,25 +1,34 @@
-import { useContext, useState, useEffect } from "react";
+import { useContext, useEffect,useState } from "react";
 import { ItemsContext } from "../store/item";
 import Post from "./post";
 import Welcome from "./WelcomeMessage";
+import LoadingSpinner from "./loadingSpinner";
 
 
 const Card = () => {
   const { data, addInitialFetch } = useContext(ItemsContext);
-  const [fetchedData, setFetchedData] = useState(false);
-
-  if (!fetchedData) {
+  const [fetching, setFetching] = useState(false);
+  const controller = new AbortController();
+  const signal = controller.signal;
+  useEffect(() => {
+    setFetching(true);
     fetch('https://dummyjson.com/posts')
       .then(res => res.json())
       .then((data) => {
         addInitialFetch(data.posts);
+        setFetching(false);
       });
-    setFetchedData(true);
-  }
+      return ()=>{
+        controller.abort();
+      }
+  }, []
+  );
+
 
   return <>
-    {data.length === 0 && <Welcome />}
-    {data.map((post) => (
+    {fetching && <LoadingSpinner />}
+    {!fetching && data.length === 0 && <Welcome />}
+    {!fetching && data.map((post) => (
       <Post key={post.id} post={post} />
     ))}
   </>
