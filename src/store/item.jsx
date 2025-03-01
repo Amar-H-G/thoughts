@@ -1,15 +1,19 @@
 import { createContext } from "react";
-import { useReducer } from "react";
+import { useReducer, useState, useEffect } from "react";
 
 const reducerFunction = (initialData, action) => {
+
   let newCurrentData = initialData;
   if (action.type === "ADD") {
     newCurrentData = [
       ...initialData,
       {
-        id: action.payload.key,
-        title: action.payload.itemName,
-        content: action.payload.itemContent,
+        id: action.payload.id,
+        title: action.payload.title,
+        body: action.payload.body,
+        userId: action.payload.userId,
+        tags: action.payload.tags,
+        reactions: action.payload.reactions || { likes: 0, dislikes: 0 },
       },
     ];
   }
@@ -21,14 +25,19 @@ const reducerFunction = (initialData, action) => {
 
 export const ItemsContext = createContext({
   data: [],
+  fetching: false,
   newItemAdd: () => { },
-  addInitialFetch: () => { },
 });
 
 const ItemContextProvider = ({ children }) => {
-  const initialData = [];
+  const [data, dispatchData] = useReducer(reducerFunction, []);
+  const [fetching, setFetching] = useState(false);
 
-  const [data, dispatchData] = useReducer(reducerFunction, initialData);
+  const controller = new AbortController();
+  const signal = controller.signal;
+
+
+
   const addInitialFetch = (posts) => {
     const fetchItemAction = {
       type: "ADD-INITIAL-POSTS",
@@ -38,23 +47,32 @@ const ItemContextProvider = ({ children }) => {
     };
     dispatchData(fetchItemAction);
   };
-  const newItemAdd = (itemName, itemContent) => {
+  const newItemAdd = (post) => {
     const newItemAction = {
       type: "ADD",
-      payload: {
-        key: Date.now(),
-        itemName,
-        itemContent,
-        reactions: { likes: 0, dislikes: 0 },
-        views: 0,
-        tags: []
-      },
+      payload: post,
     };
     dispatchData(newItemAction);
   };
 
 
-  return <ItemsContext.Provider value={{ data, newItemAdd, addInitialFetch }}>
+  useEffect(() => {
+    setFetching(true);
+    fetch('https://dummyjson.com/posts')
+      .then(res => res.json())
+      .then((data) => {
+        addInitialFetch(data.posts);
+        setFetching(false);
+      });
+    return () => {
+      controller.abort();
+    }
+  }, []
+  );
+
+
+
+  return <ItemsContext.Provider value={{ data, fetching, newItemAdd }}>
     {children}
   </ItemsContext.Provider>
 };
